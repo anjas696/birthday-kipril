@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sugeng ambal warsa 🎂</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #ff4081;
+            --gold: #d4af37;
+            --bg: #0a0a0a;
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            height: 100%; width: 100%;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            overflow: hidden;
+        }
+
+        #particles {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+            background: radial-gradient(circle at center, #1b1b1b 0%, #000 100%);
+        }
+
+        .page-container {
+            position: relative;
+            z-index: 10;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            perspective: 1000px;
+        }
+
+        .step {
+            display: none;
+            width: 80%;
+            max-width: 600px;
+            padding: 30px;
+            animation: appear 1s ease-out forwards;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes appear {
+            from { opacity: 0; transform: translateY(30px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; color: var(--gold); margin-bottom: 15px; }
+        h3 { font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: var(--gold); margin-bottom: 15px; }
+        p { font-size: 1.1rem; line-height: 1.7; color: #ccc; }
+        
+        .photo-frame {
+            width: 200px; height: 200px; margin: 0 auto 20px;
+            border-radius: 20px; border: 3px solid var(--gold);
+            overflow: hidden; transform: rotate(-3deg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+        .btn-next {
+            background: var(--accent);
+            color: white; border: none;
+            padding: 12px 30px; border-radius: 50px;
+            cursor: pointer; font-weight: bold; margin-top: 30px;
+            transition: 0.3s;
+        }
+        .btn-next:hover { transform: scale(1.1); box-shadow: 0 0 20px var(--accent); }
+
+        /* Floating Balloons & Hearts */
+        .falling-element { 
+            position: absolute; 
+            top: -50px; 
+            animation: fall linear forwards; 
+            z-index: 5; 
+            user-select: none;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bgm" loop>
+        <source src="assets/Kusuma Wijaya.mp3" type="audio/mpeg">
+    </audio>
+
+<div id="particles"></div>
+
+<div class="page-container">
+    <div class="step active" id="step1">
+        <h1 style="color: white;">Sugeng Rawuh, Nabila</h1>
+        <p>Kula namung nyuwun sekedhik wekdal saking panjenengan, kagem mirsani pesen alit punika.</p>
+        <button class="btn-next" onclick="nextStep(1)">Miwiwiti ✨</button>
+    </div>
+
+    <div class="step" id="step2">
+        <h1>Dinten Menika</h1>
+        <p>Dinten menika dados dinten ingkang istimewa, awit wonten tiyang ingkang wigati sanget ing gesang kula ingkang nembe ambal warsa.</p>
+        <button class="btn-next" onclick="nextStep(2)">Sintèn nggih? 🤔</button>
+    </div>
+
+    <div class="step" id="step3">
+        <div class="photo-frame">
+            <img src="assets/kipril2.jpeg" alt="Foto 1">
+        </div>
+        <h1>Inggih, Panjenengan</h1>
+        <p>Sugeng ambal warsa. Mugi dinten menika dados dinten ingkang kebak kabagyan lan katresnan.</p>
+        <button class="btn-next" onclick="nextStep(3)">Lajeng 🎈</button>
+    </div>
+
+    <div class="step" id="step4">
+        <h1>Matur Nuwun</h1>
+        <p>Matur nuwun sampun rawuh ing gesang kula lan ndadosaken kathah dinten dados langkung endah.</p>
+        <button class="btn-next" onclick="nextStep(4)">Lajeng 💕</button>
+    </div>
+
+    <div class="step" id="step5">
+        <h1>Elinga</h1>
+        <p>Panjenengan punika pribadi ingkang sae, kiyat, lan tansah saged maringi semangat tumrap kula.</p>
+        <button class="btn-next" onclick="nextStep(5)">Semangat 🔥</button>
+    </div>
+
+    <div class="step" id="step6">
+        <h1>Pangajab Kula</h1>
+        <p>Mugi saben langkah panjenengan tansah pinaringan kabagyan lan berkah ing gesang.</p>
+        <button class="btn-next" onclick="nextStep(6)">Sakedhik malih ✨</button>
+    </div>
+
+    <div class="step" id="step7">
+        <h1>Tansah Lumampah</h1>
+        <p>Mugi sedaya pangajab lan pangimpen panjenengan saged kaleksanan setunggal mbaka setunggal.</p>
+        <button class="btn-next" onclick="nextStep(7)">Pungkasan 🎁</button>
+    </div>
+
+    <div class="step" id="step8">
+        <div class="photo-frame">
+            <img src="assets/kipril3.jpeg" alt="Foto 3">
+        </div>
+        <h3>Sugeng Ambal Warsa</h3>
+        <h1 style="margin: 0; padding: 0; color: white;">Nabila Aprilia Azzahra</h1>
+        <p>Mugi panjenengan tansah pinaringan kabagyan, kesehatan, lan kasuksesan. Kula remen sanget saged kenal lan lumampah bebarengan kaliyan panjenengan. ❤️</p>
+        <button class="btn-next" onclick="celebrateFinal()">Rayakna 🥳</button>
+    </div>
+</div>    <script>
+        function nextStep(current) {
+            if(current === 1) {
+                document.getElementById('bgm').play().catch(() => {});
+                startFallingHearts(); // Mulai animasi love berjatuhan
+            }
+
+            document.getElementById('step' + current).classList.remove('active');
+            const next = document.getElementById('step' + (current + 1));
+            if(next) next.classList.add('active');
+
+            confetti({
+                particleCount: 40,
+                spread: 50,
+                origin: { y: 0.8 },
+                colors: ['#ff4081', '#d4af37']
+            });
+        }
+
+        // Fungsi untuk membuat animasi love berjatuhan
+        function startFallingHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'falling-element';
+                // Berbagai variasi simbol cinta
+                const symbols = ['❤️', '💖', '💗', '💕', '💘', '✨'];
+                heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+                
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                heart.style.animationDuration = (Math.random() * 3 + 4) + 's'; // Kecepatan jatuh
+                heart.style.opacity = Math.random();
+                
+                document.body.appendChild(heart);
+                
+                // Hapus elemen setelah animasi selesai agar tidak memberatkan browser
+                setTimeout(() => heart.remove(), 7000);
+            }, 300); // Muncul setiap 300ms
+        }
+
+        function celebrateFinal() {
+            var duration = 15 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) return clearInterval(interval);
+
+                var particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+    </script>
+</body>
+</html>
